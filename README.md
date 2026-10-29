@@ -37,10 +37,20 @@ A arquitetura do banco de dados foi expandida para incluir um controle físico e
 * **Alocação:** Mapeamento central da escala por `dia_semana` (1 a 7) e travas lógicas contra conflitos.
 
 ### Modelo Conceitual
-![DER Conceitual](docs/diagramas/01_der_conceitual.png)
+<details>
+  <summary><b>➕ Clique aqui para expandir / ➖ retrair o diagrama</b></summary>
+  <br>
+  <img src="docs/diagramas/01_der_conceitual.png" alt="DER Conceitual" width="100%">
+</details>
+
+<br>
 
 ### Modelo Lógico
-![Modelo Lógico](docs/diagramas/02_modelo_logico.png)
+<details>
+  <summary><b>➕ Clique aqui para expandir / ➖ retrair o diagrama</b></summary>
+  <br>
+  <img src="docs/diagramas/02_modelo_logico.png" alt="Modelo Lógico" width="100%">
+</details>
 
 ## ⚙️ Regras de Negócio e Restrições (Constraints)
 
