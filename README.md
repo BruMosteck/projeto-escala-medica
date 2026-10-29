@@ -32,8 +32,8 @@ Com base em um cadastro pré-existente de médicos em **SQLite**, o projeto este
 Esta solução foi modelada e implementada pelos seguintes engenheiros:
 
 *   👤 **Bruno Simcka Mosteck** — [GitHub](https://github.com/BruMosteck)
-*   👤 **Miguel Freitas Vieira** — [GitHub](https://github.com/MiguelVFreitas) *(substitua se necessário)*
-*   👤 **Henrique Pinheiro Lima** — [GitHub](https://github.com/HenriqueLPinheiro) *(substitua se necessário)*
+*   👤 **Miguel Freitas Vieira** — [GitHub](https://github.com/MiguelVFreitas) 
+*   👤 **Henrique Pinheiro Lima** — [GitHub](https://github.com/PinheiroLim) 
 
 **Disciplina**: Banco de Dados | **Professor**: Stelvio Barboza
 
