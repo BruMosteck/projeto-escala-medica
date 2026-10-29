@@ -9,9 +9,9 @@
 </p>
 
 <p align="center">
-  <img src="[https://img.shields.io/badge/Banco_de_Dados-SQLite-0288D1?style=flat&logo=sqlite&logoColor=white](https://img.shields.io/badge/Banco_de_Dados-SQLite-0288D1?style=flat&logo=sqlite&logoColor=white)" alt="SQLite Badge"/>
-  <img src="[https://img.shields.io/badge/Estrutura-GitHub_Organizado-424242?style=flat&logo=github&logoColor=white](https://img.shields.io/badge/Estrutura-GitHub_Organizado-424242?style=flat&logo=github&logoColor=white)" alt="GitHub Badge"/>
-  <img src="[https://img.shields.io/badge/Status-Parte_1_Concluída-4CAF50?style=flat](https://img.shields.io/badge/Status-Parte_1_Concluída-4CAF50?style=flat)" alt="Status Badge"/>
+  <img src="https://img.shields.io/badge/Banco%20de%20Dados-SQLite-0288D1?style=flat&logo=sqlite&logoColor=white" alt="SQLite Badge"/>
+  <img src="https://img.shields.io/badge/Estrutura-GitHub%20Organizado-424242?style=flat&logo=github&logoColor=white" alt="GitHub Badge"/>
+  <img src="https://img.shields.io/badge/Status-Parte%201%20Conclu%C3%ADda-4CAF50?style=flat" alt="Status Badge"/>
 </p>
 
 ---
@@ -122,10 +122,10 @@ Execute sempre antes de qualquer operação:
 PRAGMA foreign_keys = ON;
 ~~~
 
-### 2. Rodar na ordem numérica de arquivos
-*   Execute todos os arquivos em **`database/ddl/`**, em ordem (01 a 05), sobre a cópia do banco original `hospital.sqlite`.
-*   Execute todos os arquivos em **`database/dml/`**, em ordem (01 a 03).
-*   Por fim, utilize os arquivos na pasta **`database/queries/`** para rodar as validações e relatórios.
+### 2. Rodar na ordem numérica de ficheiros
+*   Execute todos os ficheiros em **`database/ddl/`**, em ordem (01 a 05), sobre a cópia do banco original `hospital.sqlite`.
+*   Execute todos os ficheiros em **`database/dml/`**, em ordem (01 a 03).
+*   Por fim, utilize os ficheiros na pasta **`database/queries/`** para rodar as validações e relatórios.
 
 ---
 <p align="center">
