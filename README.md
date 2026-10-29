@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/logo.png" alt="EscalaMed Logo" width="200"/>
+  <img src="docs/logo.png" alt="EscalaMed Banner" width="100%"/>
 </p>
 
 # 🏥 EscalaMed - Sistema de Escala Médica
