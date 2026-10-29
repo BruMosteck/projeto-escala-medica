@@ -38,7 +38,7 @@ A arquitetura do banco de dados foi expandida para incluir um controle físico e
 
 ### Modelo Conceitual
 <details>
-  <summary><b>➕ Clique aqui para expandir / ➖ retrair o diagrama</b></summary>
+  <summary><b>Expandir / retrair o diagrama</b></summary>
   <br>
   <img src="docs/diagramas/01_der_conceitual.png" alt="DER Conceitual" width="100%">
 </details>
@@ -47,7 +47,7 @@ A arquitetura do banco de dados foi expandida para incluir um controle físico e
 
 ### Modelo Lógico
 <details>
-  <summary><b>➕ Clique aqui para expandir / ➖ retrair o diagrama</b></summary>
+  <summary><b>Expandir / retrair o diagrama</b></summary>
   <br>
   <img src="docs/diagramas/02_modelo_logico.png" alt="Modelo Lógico" width="100%">
 </details>
