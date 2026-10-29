@@ -1,0 +1,64 @@
+---
+title: Projeto Escala Médica — Modelo Lógico (SQLite)
+---
+erDiagram
+    %% ---------- tabelas já existentes em hospital.sqlite ----------
+    especialidade {
+        INTEGER id_especialidade PK "AUTOINCREMENT"
+        TEXT    nome                "NOT NULL UNIQUE"
+    }
+    regime_trabalho {
+        INTEGER id_regime             PK "AUTOINCREMENT"
+        TEXT    descricao                "NOT NULL UNIQUE"
+        INTEGER carga_horaria_semanal    "NOT NULL CHECK > 0"
+    }
+    medico {
+        INTEGER id_medico        PK "AUTOINCREMENT"
+        TEXT    nome                "NOT NULL"
+        TEXT    crm              UK "NOT NULL"
+        TEXT    email            UK "NOT NULL"
+        TEXT    data_admissao       "NOT NULL (YYYY-MM-DD)"
+        INTEGER id_especialidade FK "NOT NULL"
+        INTEGER id_regime        FK "NOT NULL"
+    }
+
+    %% ---------- novas tabelas (Projeto Escala Médica) ----------
+    predio {
+        INTEGER id_predio PK "AUTOINCREMENT"
+        TEXT    nome      UK "NOT NULL"
+        TEXT    endereco
+    }
+    departamento {
+        INTEGER id_departamento PK "AUTOINCREMENT"
+        TEXT    nome               "NOT NULL - UQ(id_predio, nome)"
+        INTEGER andar
+        INTEGER id_predio       FK "NOT NULL (RN05)"
+    }
+    departamento_especialidade {
+        INTEGER id_departamento  PK,FK "NOT NULL - PK composta"
+        INTEGER id_especialidade PK,FK "NOT NULL - PK composta"
+    }
+    turno {
+        INTEGER id_turno      PK "AUTOINCREMENT"
+        TEXT    nome          UK "NOT NULL"
+        TEXT    hora_inicio      "NOT NULL CHECK HH:MM"
+        TEXT    hora_fim         "NOT NULL CHECK HH:MM"
+        INTEGER duracao_horas    "NOT NULL CHECK 1..24"
+    }
+    alocacao {
+        INTEGER id_alocacao     PK "AUTOINCREMENT"
+        INTEGER id_medico       FK "NOT NULL - UQ(id_medico, dia_semana, id_turno) RN01"
+        INTEGER id_departamento FK "NOT NULL"
+        INTEGER id_turno        FK "NOT NULL"
+        INTEGER dia_semana         "NOT NULL CHECK 1..7 (RN04)"
+    }
+
+    %% ---------- relacionamentos: (mín,máx) ----------
+    predio          ||--o{ departamento               : "possui (1,1):(0,N)"
+    departamento    ||--o{ departamento_especialidade : "aceita (1,1):(0,N)"
+    especialidade   ||--o{ departamento_especialidade : "atua em (1,1):(0,N)"
+    especialidade   ||--o{ medico                     : "exerce (1,1):(0,N)"
+    regime_trabalho ||--o{ medico                     : "segue (1,1):(0,N)"
+    medico          ||--o{ alocacao                   : "é alocado (1,1):(0,N)"
+    departamento    ||--o{ alocacao                   : "recebe (1,1):(0,N)"
+    turno           ||--o{ alocacao                   : "compõe (1,1):(0,N)"
