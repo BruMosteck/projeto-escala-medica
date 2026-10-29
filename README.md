@@ -1,10 +1,23 @@
-# 🏥 Sistema de Escala Médica
+<p align="center">
+  <img src="docs/logo.png" alt="EscalaMed Logo" width="200"/>
+</p>
+
+# 🏥 EscalaMed - Sistema de Escala Médica
 
 ![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
 ![VSCodium](https://img.shields.io/badge/VSCodium-2C2C32?style=for-the-badge&logo=vscodium&logoColor=229CE6)
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 
-Sistema de banco de dados relacional desenvolvido para gerenciar a alocação de médicos em departamentos e turnos de um hospital, garantindo a integridade dos horários e a aplicação estrita de regras de negócio.
+## 📱 Sobre o Projeto
+
+O **EscalaMed** é um sistema projetado para solucionar um problema crítico de gestão hospitalar: a descentralização e a falta de visibilidade na escala de médicos de um grande hospital. Atualmente, a escala é feita em planilhas dispersas, impossibilitando localizar os médicos de prontidão de forma ágil. 
+
+Com base num cadastro pré-existente de médicos em SQLite, o projeto estende a base de dados para modelar e automatizar a escala semanal de múltiplos prédios e departamentos (UTI, Ambulatórios, Centro Cirúrgico, Pronto Atendimento), integrando restrições de carga horária e regras de compatibilidade de especialidades.
+
+**🎯 Pergunta Central**  
+*Em qual prédio e departamento o médico X está no dia Y, turno Z?*
+
+---
 
 ## 🏗️ Estrutura do Projeto
 
@@ -47,3 +60,15 @@ A arquitetura do banco de dados foi expandida para incluir um controle físico e
 4. Execute os scripts da pasta `database/dml/` para popular as tabelas com os dados de teste.
 5. Utilize a extensão **SQLite Viewer** para inspecionar os dados inseridos visualmente.
 6. Rode os scripts da pasta `database/queries/` para validar a saída das escalas.
+
+---
+
+## 👨‍💻 Equipe de Desenvolvimento
+
+Esta solução foi modelada e implementada pelos seguintes engenheiros:
+
+* 👤 **Bruno Simcka Mosteck** — [GitHub](https://github.com/BruMosteck)
+* 👤 **Miguel Freitas Vieira** — [GitHub](https://github.com/MiguelVFreitas)
+* 👤 **Henrique Pinheiro Lima** — [GitHub](https://github.com/PinheiroLim)
+
+**Disciplina:** Banco de Dados | **Professor:** Stelvio Barboza
