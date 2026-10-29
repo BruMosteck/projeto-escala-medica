@@ -17,6 +17,16 @@ Com base num cadastro pré-existente de médicos em SQLite, o projeto estende a 
 **🎯 Pergunta Central**  
 *Em qual prédio e departamento o médico X está no dia Y, turno Z?*
 
+## 👨‍💻 Equipe de Desenvolvimento
+
+Esta solução foi modelada e implementada pelos seguintes engenheiros:
+
+* 👤 **Bruno Simcka Mosteck** — [GitHub](https://github.com/BruMosteck)
+* 👤 **Miguel Freitas Vieira** — [GitHub](https://github.com/DevFreitasMiguel)
+* 👤 **Henrique Pinheiro Lima** — [GitHub](https://github.com/PinheiroLim)
+
+**Disciplina:** Banco de Dados | **Professor:** Stelvio Barboza
+
 ---
 
 ## 🏗️ Estrutura do Projeto
@@ -88,15 +98,3 @@ A arquitetura do banco de dados foi expandida para incluir um controle físico e
 cp database/base/hospital.sqlite escala.sqlite
 for f in database/ddl/*.sql database/dml/*.sql; do sqlite3 escala.sqlite < "$f"; done
 sqlite3 -header-column escala.sqlite < database/queries/q1_escala_medico.sql
-
----
-
-## 👨‍💻 Equipe de Desenvolvimento
-
-Esta solução foi modelada e implementada pelos seguintes engenheiros:
-
-* 👤 **Bruno Simcka Mosteck** — [GitHub](https://github.com/BruMosteck)
-* 👤 **Miguel Freitas Vieira** — [GitHub](https://github.com/DevFreitasMiguel)
-* 👤 **Henrique Pinheiro Lima** — [GitHub](https://github.com/PinheiroLim)
-
-**Disciplina:** Banco de Dados | **Professor:** Stelvio Barboza
