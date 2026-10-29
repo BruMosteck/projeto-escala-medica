@@ -129,5 +129,5 @@ PRAGMA foreign_keys = ON;
 
 ---
 <p align="center">
-  Desenvolvido por Bruno, Miguel e Henrique • 2026
+  Desenvolvido com ❤️ pela equipe do EscalaMed • 2026
 </p>
