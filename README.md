@@ -129,5 +129,5 @@ PRAGMA foreign_keys = ON;
 
 ---
 <p align="center">
-  Desenvolvido com ❤️ por Bruno, Miguel e Henrique • 2026
+  Desenvolvido por Bruno, Miguel e Henrique • 2026
 </p>
