@@ -78,7 +78,7 @@ A arquitetura do banco de dados foi expandida para incluir um controle físico e
 Esta solução foi modelada e implementada pelos seguintes engenheiros:
 
 * 👤 **Bruno Simcka Mosteck** — [GitHub](https://github.com/BruMosteck)
-* 👤 **Miguel Freitas Vieira** — [GitHub](https://github.com/MiguelVFreitas)
+* 👤 **Miguel Freitas Vieira** — [GitHub](https://github.com/DevFreitasMiguel)
 * 👤 **Henrique Pinheiro Lima** — [GitHub](https://github.com/PinheiroLim)
 
 **Disciplina:** Banco de Dados | **Professor:** Stelvio Barboza
