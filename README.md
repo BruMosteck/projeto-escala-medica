@@ -1,133 +1,49 @@
-<p align="center">
-  <img src="docs/logo.png" alt="EscalaMed Logo" width="240"/>
-</p>
+# 🏥 Sistema de Escala Médica
 
-<h1 align="center">🩺 EscalaMed | Gestão de Escala Médica</h1>
+![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
+![VSCodium](https://img.shields.io/badge/VSCodium-2C2C32?style=for-the-badge&logo=vscodium&logoColor=229CE6)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 
-<p align="center">
-  <strong>Parte 1: Modelagem, Estrutura de Repositório e Scripts SQL</strong>
-</p>
+Sistema de banco de dados relacional desenvolvido para gerenciar a alocação de médicos em departamentos e turnos de um hospital, garantindo a integridade dos horários e a aplicação estrita de regras de negócio.
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Banco%20de%20Dados-SQLite-0288D1?style=flat&logo=sqlite&logoColor=white" alt="SQLite Badge"/>
-  <img src="https://img.shields.io/badge/Estrutura-GitHub%20Organizado-424242?style=flat&logo=github&logoColor=white" alt="GitHub Badge"/>
-  <img src="https://img.shields.io/badge/Status-Parte%201%20Conclu%C3%ADda-4CAF50?style=flat" alt="Status Badge"/>
-</p>
+## 🏗️ Estrutura do Projeto
 
----
+O repositório está organizado de forma modular nas seguintes pastas:
 
-## 📱 Sobre o Projeto
+* **`database/base/`**: Scripts iniciais de infraestrutura (Especialidade, Regime de Trabalho e Médico).
+* **`database/ddl/`**: Scripts de criação da modelagem atualizada (Prédio, Departamento, Turno, etc.).
+* **`database/dml/`**: Scripts de inserção de dados para povoamento inicial do banco.
+* **`database/queries/`**: Consultas SQL para teste e validação das regras operacionais.
+* **`docs/diagramas/`**: Modelos visuais (Conceitual e Lógico) da arquitetura do banco.
 
-O **EscalaMed** é um sistema projetado para solucionar um problema crítico de gestão hospitalar: a descentralização e a falta de visibilidade na escala de médicos de um grande hospital. Atualmente, a escala é feita em planilhas dispersas, impossibilitando localizar os médicos de prontidão de forma ágil. 
+## 📊 Modelagem de Dados
 
-Com base num cadastro pré-existente de médicos em **SQLite**, o projeto estende a base de dados para modelar e automatizar a escala semanal de múltiplos prédios e departamentos (UTI, Ambulatórios, Centro Cirúrgico, Pronto Atendimento), integrando restrições de carga horária e regras de compatibilidade de especialidades.
+A arquitetura do banco de dados foi expandida para incluir um controle físico e temporal mais detalhado:
+* **Prédio & Departamento:** Com mapeamento específico de `endereco` e `andar`.
+* **Turno:** Validação rigorosa de horários no formato 24h (`HH:MM`) utilizando a função `GLOB` e cálculo de `duracao_horas` cobrindo viradas de noite.
+* **Alocação:** Mapeamento central da escala por `dia_semana` (1 a 7) e travas lógicas contra conflitos.
 
-> **🎯 Pergunta Central:**  
-> *"Em qual prédio e departamento o médico X está no dia Y, turno Z?"*
+### Modelo Conceitual
+![DER Conceitual](docs/diagramas/01_der_conceitual.png)
 
----
+### Modelo Lógico
+![Modelo Lógico](docs/diagramas/02_modelo_logico.png)
 
-## 👨‍💻 Equipe de Desenvolvimento
+## ⚙️ Regras de Negócio e Restrições (Constraints)
 
-Esta solução foi modelada e implementada pelos seguintes engenheiros:
-
-*   👤 **Bruno Simcka Mosteck** — [GitHub](https://github.com/BruMosteck)
-*   👤 **Miguel Freitas Vieira** — [GitHub](https://github.com/MiguelVFreitas)
-*   👤 **Henrique Pinheiro Lima** — [GitHub](https://github.com/PinheiroLim)
-
-**Disciplina**: Banco de Dados | **Professor**: Stelvio Barboza
-
----
-
-## 📁 Estrutura do Repositório
-
-O projeto segue à risca a organização exigida, garantindo que a base de dados possa ser evoluída e integrada de forma fluida nas próximas etapas.
-
-~~~text
-projeto-escala-medica/
-├── README.md               # Este arquivo de documentação e guia
-├── database/               # Todo o ecossistema de banco de dados
-│   ├── base/               # Base de dados fornecida
-│   │   └── hospital.sqlite
-│   ├── ddl/                # Scripts de criação das tabelas
-│   │   ├── 01_create_predio.sql
-│   │   ├── 02_create_departamento.sql
-│   │   ├── 03_create_departamento_especialidade.sql
-│   │   ├── 04_create_turno.sql
-│   │   └── 05_create_alocacao.sql
-│   ├── dml/                # Cargas e povoamento inicial
-│   │   ├── 01_insert_predios_departamentos.sql
-│   │   ├── 02_insert_turnos.sql
-│   │   └── 03_insert_escala_semanal.sql
-│   └── queries/            # Consultas de validação e relatórios
-│       ├── q1_escala_medico.sql
-│       ├── q2_medicos_predio_quarta.sql
-│       ├── q3_medicos_sem_alocacao.sql
-│       ├── q4_validacao_especialidade.sql
-│       ├── q5_validacao_carga_horaria.sql
-│       └── q6_quantitativo_por_departamento.sql
-└── docs/                   # Planejamento e diagramas
-    ├── diagramas/          
-    │   ├── der_conceitual.png
-    │   └── modelo_logico.png
-    └── logo.png            
-~~~
-
----
-
-## ⚙️ Modelagem e Regras de Negócio (RN)
-
-Toda a modelagem estende as tabelas pré-existentes (`especialidade`, `medico`, `regime_trabalho`) e as relaciona com as novas entidades (`predio`, `departamento`, `departamento_especialidade`, `turno`, `alocacao`), garantindo a integridade dos dados por meio das seguintes regras:
-
-| ID | Regra de Negócio (RN) | Implementação no Banco |
+| Regra | Descrição | Implementação SQL |
 | :--- | :--- | :--- |
-| **RN01** | **Sem conflito de horário** | Restrição de unicidade composta (`UNIQUE`) para evitar alocações duplas. |
-| **RN02** | **Especialidade compatível** | Alocação restrita a departamentos que aceitam a especialidade do médico. |
-| **RN03** | **Carga do regime respeitada** | A soma das horas dos turnos não pode ultrapassar o teto semanal. |
-| **RN04** | **Departamento tem prédio** | Todo departamento obrigatoriamente pertence a um prédio (`FK NOT NULL`). |
-| **RN05** | **Dia da semana válido** | Dias representados de 1 (segunda) a 7 (domingo) por meio de `CHECK`. |
-| **RN06** | **Integridade referencial** | Proibido alocar médicos, departamentos ou turnos inexistentes (`FK`). |
+| **RN01** | Prevenção de conflito de horários (mesmo médico/dia/turno). | `UNIQUE (id_medico, dia_semana, id_turno)` |
+| **RN02** | Especialidade compatível com o departamento alocado. | Validado via `queries/q4` |
+| **RN03** | Respeito à carga horária máxima semanal do médico. | Validado via `queries/q5` |
+| **RN04** | Dia da semana válido (1 = Segunda a 7 = Domingo). | `CHECK (dia_semana BETWEEN 1 AND 7)` |
+| **RN05** | Formatação estrita de horários (00:00 a 23:59). | `CHECK (hora_inicio GLOB '[0-2][0-9]:[0-5][0-9]')` |
 
----
+## 🚀 Como Executar
 
-## 📊 Diagramas do Projeto
-
-Para conferir o mapeamento conceitual e a estrutura lógica desenvolvida para as novas tabelas, acesse os arquivos:
-
-*   Visualizar [DER Conceitual](./docs/diagramas/der_conceitual.png)
-*   Visualizar [Modelo Lógico](./docs/diagramas/modelo_logico.png)
-
----
-
-## 🔎 Consultas Obrigatórias (Queries)
-
-Para validar a integridade da escala, o repositório traz as 6 consultas complexas exigidas:
-
-1.  **Q1 (`q1_escala_medico.sql`)**: Escala semanal completa de um médico.
-2.  **Q2 (`q2_medicos_predio_quarta.sql`)**: Médicos presentes em determinado prédio nas quartas-feiras à tarde.
-3.  **Q3 (`q3_medicos_sem_alocacao.sql`)**: Médicos que não possuem qualquer alocação na semana.
-4.  **Q4 (`q4_validacao_especialidade.sql`)**: Varredura por alocações em departamentos incompatíveis.
-5.  **Q5 (`q5_validacao_carga_horaria.sql`)**: Comparativo de horas alocadas vs. carga horária permitida.
-6.  **Q6 (`q6_quantitativo_por_departamento.sql`)**: Volumetria diária e por departamento de médicos alocados.
-
----
-
-## ▶️ Como Executar o Projeto
-
-Siga o passo a passo no seu cliente SQLite favorito (DBeaver, DB Browser for SQLite) ou via Terminal:
-
-### 1. Garantir que as Chaves Estrangeiras estão ativas
-Execute sempre antes de qualquer operação:
-~~~sql
-PRAGMA foreign_keys = ON;
-~~~
-
-### 2. Rodar na ordem numérica de ficheiros
-*   Execute todos os ficheiros em **`database/ddl/`**, em ordem (01 a 05), sobre a cópia do banco original `hospital.sqlite`.
-*   Execute todos os ficheiros em **`database/dml/`**, em ordem (01 a 03).
-*   Por fim, utilize os ficheiros na pasta **`database/queries/`** para rodar as validações e relatórios.
-
----
-<p align="center">
-  Desenvolvido por Bruno, Miguel e Henrique
-</p>
+1. Abra a raiz do projeto no **VSCodium**.
+2. Certifique-se de ter a extensão **SQLite (alexcvzz)** instalada para execução de scripts.
+3. Navegue até a pasta `database/ddl/` e execute os scripts de `01` a `05` utilizando o comando `SQLite: Run Query`.
+4. Execute os scripts da pasta `database/dml/` para popular as tabelas com os dados de teste.
+5. Utilize a extensão **SQLite Viewer** para inspecionar os dados inseridos visualmente.
+6. Rode os scripts da pasta `database/queries/` para validar a saída das escalas.
