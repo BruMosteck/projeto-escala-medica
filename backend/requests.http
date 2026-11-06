@@ -1,0 +1,59 @@
+### Requisições prontas para IntelliJ (HTTP Client) ou VS Code (extensão REST Client)
+@api = http://localhost:8080/api
+
+### Q1: escala semanal da Ana Ribeiro (médico 1)
+GET {{api}}/medicos/1/escala
+
+### Q2: quem está no Bloco C (prédio 3) na quarta-feira (3) à tarde (turno 2)
+GET {{api}}/alocacoes?idPredio=3&dia=3&idTurno=2
+
+### Apoio: departamentos e especialidades aceitas
+GET {{api}}/departamentos
+
+### Criar alocação válida: Beatriz Falcão (25, Clínica Médica) no Pronto-Socorro Adulto, segunda de manhã
+POST {{api}}/alocacoes
+Content-Type: application/json
+
+{"idMedico": 25, "idDepartamento": 1, "idTurno": 1, "diaSemana": 1}
+
+### RN01: Ana já está na segunda de manhã -> 409
+POST {{api}}/alocacoes
+Content-Type: application/json
+
+{"idMedico": 1, "idDepartamento": 4, "idTurno": 1, "diaSemana": 1}
+
+### RN02: Ortopedia não é aceita na Maternidade (9) -> 422
+POST {{api}}/alocacoes
+Content-Type: application/json
+
+{"idMedico": 1, "idDepartamento": 9, "idTurno": 1, "diaSemana": 3}
+
+### RN03: Ana (Parcial 30h) já tem 30h -> 422
+POST {{api}}/alocacoes
+Content-Type: application/json
+
+{"idMedico": 1, "idDepartamento": 4, "idTurno": 2, "diaSemana": 3}
+
+### RN04: dia 8 não existe -> 400
+POST {{api}}/alocacoes
+Content-Type: application/json
+
+{"idMedico": 25, "idDepartamento": 1, "idTurno": 1, "diaSemana": 8}
+
+### RN06: médico 999 não existe -> 404
+POST {{api}}/alocacoes
+Content-Type: application/json
+
+{"idMedico": 999, "idDepartamento": 1, "idTurno": 1, "diaSemana": 1}
+
+### Q3: médicos sem alocação
+GET {{api}}/relatorios/medicos-sem-alocacao
+
+### Q4: alocações incompatíveis (deve ser [])
+GET {{api}}/relatorios/alocacoes-incompativeis
+
+### Q5: horas alocadas x carga do regime
+GET {{api}}/relatorios/carga
+
+### Q6: médicos por departamento e dia
+GET {{api}}/relatorios/ocupacao
